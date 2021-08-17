@@ -8,4 +8,6 @@ COPY . /usr/src/app
 
 EXPOSE 80
 
+CMD ["npm", "install"]
+
 CMD ["npm", "run", "start"]
