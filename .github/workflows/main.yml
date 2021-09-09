@@ -1,0 +1,31 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy to DO
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: deploy to digital ocen droplet via ssh action
+        uses: appleboy/ssh-action@v0.1.4
+        with: 
+          host: 164.90.176.15
+          password: 5u4-.hL2cn7h(.h
+          username: root
+          scripts: |
+            docker kill $(docker ps -q)
+            docker rm $(docker ps -a -q)
+            docker rmi $(docker images -q)
+            cd /home
+            rm -rf aula_deploy
+            git clone https://github.com/mathiasgheno/aula_deploy
+            cd aula_deploy
+            docker build . -t app
+            docker run -d -p 80:80 app
+            
