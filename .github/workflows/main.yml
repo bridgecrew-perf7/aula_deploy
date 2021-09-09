@@ -15,9 +15,9 @@ jobs:
       - name: deploy to digital ocen droplet via ssh action
         uses: appleboy/ssh-action@v0.1.4
         with: 
-          host: ${{secret.HOST}}
-          password: ${{secret.PASSWORD}}
-          username: ${{secret.USERNAME}}
+          host: ${{secrets.HOST}}
+          password: ${{secrets.PASSWORD}}
+          username: ${{secrets.USERNAME}}
           script: |
             docker kill $(docker ps -q)
             docker rm $(docker ps -a -q)
