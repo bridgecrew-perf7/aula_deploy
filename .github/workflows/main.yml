@@ -18,7 +18,7 @@ jobs:
           host: 164.90.176.15
           password: 5u4-.hL2cn7h(.h
           username: root
-          scripts: |
+          script: |
             docker kill $(docker ps -q)
             docker rm $(docker ps -a -q)
             docker rmi $(docker images -q)
